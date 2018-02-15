@@ -3,6 +3,9 @@
 Slack API: 
 https://api.slack.com/
 
+Slack API dialog creation:
+https://api.slack.com/dialogs
+
 Secure tunnels to localhost:
 https://ngrok.com/
 

@@ -42,7 +42,7 @@ class ChatBot:
     # ----------------------------------------------------------------------------------------------------------------
     def _handle_command(self, text, channel, user_id):
 
-        if not self.get_user_by_id(user_id).get('is_bot'):#user_id != SLACK_BOT_UID:
+        if not self.get_user_by_id(user_id).get('is_bot'):
 
             user_name = self.get_user_by_id(user_id).get('name')
 

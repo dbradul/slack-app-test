@@ -3,24 +3,24 @@ import time
 from slackclient import SlackClient
 
 
-class EchoBot:
+class ChatBot:
 
     # -------------------------------------------------------------------------
     def __init__(self, slack_bot_token, read_websocket_delay_sec):
         self._slack_client = SlackClient(slack_bot_token)
-        self.users = []
-        self.read_websocket_delay_sec = read_websocket_delay_sec
+        self._users = []
+        self._read_websocket_delay_sec = read_websocket_delay_sec
 
 
     # -------------------------------------------------------------------------
-    def fetch_users(self):
+    def _fetch_users(self):
         api_call = self._slack_client.api_call("users.list")
         if api_call.get('ok'):
-            self.users = api_call.get('members')
+            self._users = api_call.get('members')
 
     # -------------------------------------------------------------------------
     def get_user_by_id(self, user_id):
-        for user in self.users:
+        for user in self._users:
             if user['id'] == user_id:
                 return user
         return {}
@@ -66,7 +66,7 @@ class EchoBot:
 
         if self._slack_client.rtm_connect():
             print("StarterBot connected and running!")
-            self.fetch_users()
+            self._fetch_users()
 
             while True:
                 inc_msg = self._slack_client.rtm_read()
@@ -77,6 +77,6 @@ class EchoBot:
                 if text and channel and user:
                     self._handle_command(text, channel, user)
 
-                time.sleep(self.read_websocket_delay_sec)
+                time.sleep(self._read_websocket_delay_sec)
         else:
             print("Connection failed. Invalid Slack token or bot ID?")

@@ -8,7 +8,7 @@ import functools
 
 from pprint import pprint as pp
 from flask import Flask, make_response
-from echo_bot import ChatBot
+from chat_bot import ChatBot
 
 
 
@@ -165,13 +165,13 @@ def main():
     #     icon_emoji=':sunglasses:'
     # )
 
-    # demo_slack_incoming_msg_handler()
+    demo_slack_incoming_msg_handler()
 
-    chat_bot = ChatBot(
-        slack_bot_token=SLACK_BOT_TOKEN,
-        read_websocket_delay_sec=0.3
-    )
-    chat_bot.run()
+    # chat_bot = ChatBot(
+    #     slack_bot_token=SLACK_BOT_TOKEN,
+    #     read_websocket_delay_sec=0.3
+    # )
+    # chat_bot.run()
 
 
 # ----------------------------------------------------------------------------------------------------------------
